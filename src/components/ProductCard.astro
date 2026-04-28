@@ -1,0 +1,87 @@
+---
+import StarRating from './StarRating.astro';
+import RakutenButton from './RakutenButton.astro';
+import type { Product } from '../types/index';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const pricePerLens = Math.ceil(product.price / product.boxCount);
+---
+
+<article class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col overflow-hidden group">
+  <!-- バッジ -->
+  {(product.isPopular || product.isNew) && (
+    <div class="absolute top-3 left-3 flex gap-1 z-10">
+      {product.isPopular && (
+        <span class="bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">人気</span>
+      )}
+      {product.isNew && (
+        <span class="bg-green-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">NEW</span>
+      )}
+    </div>
+  )}
+
+  <!-- 画像 -->
+  <a
+    href={`${base}/products/${product.slug}/`}
+    class="relative block overflow-hidden bg-blue-50 aspect-video"
+    tabindex="-1"
+  >
+    <img
+      src={product.image}
+      alt={product.name}
+      width="480"
+      height="360"
+      loading="lazy"
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+    />
+  </a>
+
+  <!-- コンテンツ -->
+  <div class="flex flex-col flex-1 p-4 gap-3">
+    <!-- ブランド -->
+    <p class="text-xs text-blue-600 font-medium">{product.brand}</p>
+
+    <!-- 商品名 -->
+    <h3 class="font-bold text-gray-900 leading-snug">
+      <a
+        href={`${base}/products/${product.slug}/`}
+        class="hover:text-blue-700 transition-colors"
+      >
+        {product.name}
+      </a>
+    </h3>
+
+    <!-- 評価 -->
+    <StarRating rating={product.rating} reviewCount={product.reviewCount} size="sm" />
+
+    <!-- 価格 -->
+    <div class="flex items-baseline gap-2 mt-auto">
+      <span class="text-2xl font-extrabold text-blue-800">
+        ¥{product.price.toLocaleString()}
+      </span>
+      <span class="text-sm text-gray-500">
+        / {product.boxCount}枚入
+        <span class="ml-1 text-xs bg-gray-100 px-1.5 py-0.5 rounded">
+          1枚あたり約¥{pricePerLens}
+        </span>
+      </span>
+    </div>
+
+    <!-- 楽天ボタン -->
+    <RakutenButton url={product.rakutenUrl} size="sm" fullWidth />
+
+    <!-- 詳細リンク -->
+    <a
+      href={`${base}/products/${product.slug}/`}
+      class="text-center text-sm text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+    >
+      詳細・スペックを見る →
+    </a>
+  </div>
+</article>

@@ -1,0 +1,36 @@
+---
+import type { CategoryInfo } from '../types/index';
+
+interface Props {
+  category: CategoryInfo;
+  productCount: number;
+}
+
+const { category, productCount } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<a
+  href={`${base}/category/${category.id}/`}
+  class:list={[
+    'block rounded-2xl border-2 p-5 transition-all duration-200',
+    'hover:shadow-lg hover:-translate-y-1',
+    category.bgColor,
+    category.borderColor,
+  ]}
+>
+  <div class="flex items-start justify-between mb-3">
+    <span class="text-4xl" aria-hidden="true">{category.icon}</span>
+    <span class:list={['text-xs font-medium px-2 py-1 rounded-full bg-white/70', category.textColor]}>
+      {productCount}商品
+    </span>
+  </div>
+  <h2 class:list={['text-lg font-bold mb-1', category.textColor]}>{category.name}</h2>
+  <p class="text-sm text-gray-600 leading-relaxed">{category.description}</p>
+  <div class:list={['mt-3 text-sm font-medium flex items-center gap-1', category.textColor]}>
+    商品を見る
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </div>
+</a>

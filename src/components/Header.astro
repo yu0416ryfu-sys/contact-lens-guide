@@ -1,0 +1,86 @@
+---
+import { categories } from '../data/categories';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <!-- ロゴ＋タイトル行 -->
+    <div class="flex items-center justify-between h-16">
+      <a href={`${base}/`} class="flex items-center gap-2 group">
+        <span class="text-2xl" aria-hidden="true">👁️</span>
+        <div>
+          <span class="text-lg font-bold text-blue-800 group-hover:text-blue-600 transition-colors leading-tight block">
+            コンタクトレンズ比較ナビ
+          </span>
+          <span class="text-xs text-gray-500 leading-tight block">楽天最安値 &amp; 徹底比較</span>
+        </div>
+      </a>
+
+      <!-- モバイルメニューボタン -->
+      <button
+        id="menu-toggle"
+        class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+        aria-label="メニューを開く"
+        aria-expanded="false"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- カテゴリナビ（デスクトップ） -->
+    <nav class="hidden md:flex items-center gap-1 pb-2" aria-label="カテゴリナビゲーション">
+      {categories.map(cat => (
+        <a
+          href={`${base}/category/${cat.id}/`}
+          class:list={[
+            'px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap',
+            currentPath.includes(`/category/${cat.id}`)
+              ? 'bg-blue-600 text-white'
+              : 'text-gray-600 hover:bg-blue-50 hover:text-blue-700',
+          ]}
+        >
+          <span aria-hidden="true">{cat.icon}</span> {cat.name}
+        </a>
+      ))}
+    </nav>
+  </div>
+
+  <!-- モバイルメニュー -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-gray-100 bg-white px-4 py-3"
+  >
+    <nav class="flex flex-col gap-1" aria-label="モバイルカテゴリナビゲーション">
+      {categories.map(cat => (
+        <a
+          href={`${base}/category/${cat.id}/`}
+          class:list={[
+            'flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+            currentPath.includes(`/category/${cat.id}`)
+              ? 'bg-blue-600 text-white'
+              : 'text-gray-700 hover:bg-blue-50 hover:text-blue-700',
+          ]}
+        >
+          <span aria-hidden="true">{cat.icon}</span>
+          <span>{cat.name}</span>
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', isOpen);
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+</script>

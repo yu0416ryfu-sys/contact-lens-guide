@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { categories, getCategoryInfo } from '../../data/categories';
+import { getProductsByCategory } from '../../data/products';
+import type { CategoryId } from '../../types/index';
+
+export function getStaticPaths() {
+  return ['oneday', 'twoweek', 'color', 'toric', 'multifocal'].map(id => ({
+    params: { category: id },
+  }));
+}
+
+const { category } = Astro.params as { category: CategoryId };
+const categoryInfo = getCategoryInfo(category)!;
+const products = getProductsByCategory(category);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const metaDescription: Record<CategoryId, string> = {
+  oneday: `ワンデー（1日使い捨て）コンタクトレンズ${products.length}商品を比較。ケア不要で衛生的なワンデーレンズの価格・スペック・口コミを掲載。楽天市場で購入できます。`,
+  twoweek: `2週間使い捨てコンタクトレンズ${products.length}商品を比較。コスパと快適さのバランスが取れた2週間レンズの価格・スペック・口コミを掲載。`,
+  color: `カラーコンタクトレンズ${products.length}商品を比較。自然な発色からビビッドカラーまで。価格・スペック・口コミを掲載。楽天市場で購入できます。`,
+  toric: `乱視用コンタクトレンズ（トーリック）${products.length}商品を比較。安定設計で快適な乱視矯正。価格・スペック・口コミを掲載。`,
+  multifocal: `遠近両用コンタクトレンズ${products.length}商品を比較。老眼・遠近両用対応。価格・スペック・口コミを掲載。楽天市場で購入できます。`,
+};
+---
+
+<BaseLayout
+  title={`${categoryInfo.name}コンタクトレンズ 比較・おすすめ${products.length}選`}
+  description={metaDescription[category]}
+>
+  <!-- パンくず -->
+  <nav class="bg-white border-b border-gray-100 py-2 px-4 text-sm" aria-label="パンくずリスト">
+    <ol class="max-w-6xl mx-auto flex items-center gap-2 text-gray-500">
+      <li><a href={`${base}/`} class="hover:text-blue-600 transition-colors">ホーム</a></li>
+      <li aria-hidden="true">›</li>
+      <li class="text-gray-900 font-medium">{categoryInfo.name}</li>
+    </ol>
+  </nav>
+
+  <!-- カテゴリヘッダー -->
+  <section class:list={['py-10 px-4', categoryInfo.bgColor]}>
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-5xl" aria-hidden="true">{categoryInfo.icon}</span>
+        <div>
+          <h1 class:list={['text-3xl font-extrabold', categoryInfo.textColor]}>
+            {categoryInfo.name}
+          </h1>
+          <p class="text-gray-600 mt-1">{products.length}商品</p>
+        </div>
+      </div>
+      <p class="text-gray-700 max-w-2xl leading-relaxed">{categoryInfo.description}</p>
+
+      <!-- 比較ページリンク -->
+      <a
+        href={`${base}/compare/${category}/`}
+        class:list={[
+          'mt-5 inline-flex items-center gap-2 bg-white border-2 text-sm font-semibold px-4 py-2 rounded-lg transition-colors',
+          categoryInfo.borderColor,
+          categoryInfo.textColor,
+          'hover:bg-gray-50',
+        ]}
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+        {categoryInfo.name}を表で一括比較する
+      </a>
+    </div>
+  </section>
+
+  <!-- 商品グリッド -->
+  <section class="py-10 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map(product => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 他カテゴリへのリンク -->
+  <section class="py-10 px-4 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-lg font-bold text-gray-900 mb-4">他のカテゴリも見る</h2>
+      <div class="flex flex-wrap gap-3">
+        {categories.filter(c => c.id !== category).map(cat => (
+          <a
+            href={`${base}/category/${cat.id}/`}
+            class:list={[
+              'flex items-center gap-1.5 px-4 py-2 rounded-full border-2 text-sm font-medium transition-colors',
+              cat.bgColor,
+              cat.borderColor,
+              cat.textColor,
+              'hover:opacity-80',
+            ]}
+          >
+            {cat.icon} {cat.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

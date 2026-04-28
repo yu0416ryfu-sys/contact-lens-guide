@@ -1,0 +1,70 @@
+---
+import { categories } from '../data/categories';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-blue-900 text-blue-100 mt-16">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <!-- サイト情報 -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl" aria-hidden="true">👁️</span>
+          <span class="text-lg font-bold text-white">コンタクトレンズ比較ナビ</span>
+        </div>
+        <p class="text-sm text-blue-200 leading-relaxed">
+          コンタクトレンズの選び方・比較情報をわかりやすくお届けする情報サイトです。
+          楽天市場の最新価格と口コミをもとに、あなたに合ったレンズ選びをサポートします。
+        </p>
+      </div>
+
+      <!-- カテゴリ -->
+      <div>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">カテゴリ</h3>
+        <ul class="space-y-2">
+          {categories.map(cat => (
+            <li>
+              <a
+                href={`${base}/category/${cat.id}/`}
+                class="text-sm text-blue-200 hover:text-white transition-colors"
+              >
+                {cat.icon} {cat.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 比較ページ -->
+      <div>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">比較ページ</h3>
+        <ul class="space-y-2">
+          {categories.map(cat => (
+            <li>
+              <a
+                href={`${base}/compare/${cat.id}/`}
+                class="text-sm text-blue-200 hover:text-white transition-colors"
+              >
+                {cat.name}を比較
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- 免責事項 -->
+    <div class="border-t border-blue-800 pt-6">
+      <p class="text-xs text-blue-300 leading-relaxed mb-3">
+        ※ 当サイトは楽天アフィリエイトプログラムに参加しており、商品リンクを通じた購入により一定の報酬を得る場合があります。
+        掲載価格は楽天市場の表示価格であり、変動する場合があります。
+        コンタクトレンズは高度管理医療機器です。必ず眼科医の処方・指示に従ってご使用ください。
+      </p>
+      <p class="text-xs text-blue-400">
+        &copy; {currentYear} コンタクトレンズ比較ナビ. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

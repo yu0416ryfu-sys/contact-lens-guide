@@ -1,0 +1,32 @@
+---
+interface Props {
+  rating: number;
+  reviewCount?: number;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { rating, reviewCount, size = 'md' } = Astro.props;
+
+// 0.5刻みで星を計算
+const fullStars = Math.floor(rating);
+const hasHalf = rating % 1 >= 0.5;
+const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+
+const sizeClass = {
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-xl',
+}[size];
+---
+
+<div class:list={['flex items-center gap-1', sizeClass]} aria-label={`評価 ${rating} / 5`}>
+  <span class="flex text-yellow-400" aria-hidden="true">
+    {Array.from({ length: fullStars }).map(() => <span>★</span>)}
+    {hasHalf && <span class="text-yellow-300">★</span>}
+    {Array.from({ length: emptyStars }).map(() => <span class="text-gray-300">★</span>)}
+  </span>
+  <span class="font-semibold text-gray-800">{rating.toFixed(1)}</span>
+  {reviewCount !== undefined && (
+    <span class="text-gray-500 text-sm">({reviewCount.toLocaleString()}件)</span>
+  )}
+</div>

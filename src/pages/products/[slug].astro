@@ -1,0 +1,215 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StarRating from '../../components/StarRating.astro';
+import RakutenButton from '../../components/RakutenButton.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getCategoryInfo } from '../../data/categories';
+import { products, getRelatedProducts } from '../../data/products';
+
+export function getStaticPaths() {
+  return products.map(p => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const product = products.find(p => p.slug === slug)!;
+const categoryInfo = getCategoryInfo(product.category)!;
+const relatedProducts = getRelatedProducts(product.slug, product.category);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const pricePerLens = Math.ceil(product.price / product.boxCount);
+
+// スペックテーブル用データ
+const specRows = [
+  { label: 'ブランド', value: product.brand },
+  { label: '交換サイクル', value: product.specs.replacementCycle },
+  { label: 'ベースカーブ (BC)', value: `${product.specs.bc} mm` },
+  { label: '直径 (DIA)', value: `${product.specs.dia} mm` },
+  { label: '度数範囲', value: product.specs.power },
+  { label: '含水率', value: product.specs.water },
+  { label: 'UVカット', value: product.specs.uv ? '✓ あり' : '× なし' },
+  ...(product.specs.material ? [{ label: '素材', value: product.specs.material }] : []),
+  ...(product.specs.thickness ? [{ label: '中心厚', value: product.specs.thickness }] : []),
+  { label: '1箱枚数', value: `${product.boxCount}枚入` },
+];
+---
+
+<BaseLayout
+  title={`${product.name}の口コミ・スペック・最安値`}
+  description={`${product.name}（${product.brand}）の詳細情報。価格¥${product.price.toLocaleString()}/${product.boxCount}枚、評価${product.rating}/5（${product.reviewCount.toLocaleString()}件）。スペック・特徴・向いている人を徹底解説。楽天市場で購入できます。`}
+  ogImage={product.image}
+  product={product}
+>
+  <!-- パンくず -->
+  <nav class="bg-white border-b border-gray-100 py-2 px-4 text-sm" aria-label="パンくずリスト">
+    <ol class="max-w-5xl mx-auto flex flex-wrap items-center gap-2 text-gray-500">
+      <li><a href={`${base}/`} class="hover:text-blue-600 transition-colors">ホーム</a></li>
+      <li aria-hidden="true">›</li>
+      <li>
+        <a href={`${base}/category/${product.category}/`} class="hover:text-blue-600 transition-colors">
+          {categoryInfo.name}
+        </a>
+      </li>
+      <li aria-hidden="true">›</li>
+      <li class="text-gray-900 font-medium truncate max-w-[200px]">{product.name}</li>
+    </ol>
+  </nav>
+
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <!-- メインコンテンツ -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+      <!-- 左：画像 -->
+      <div>
+        <div class:list={['rounded-2xl overflow-hidden aspect-video', categoryInfo.bgColor]}>
+          <img
+            src={product.image}
+            alt={product.name}
+            width="480"
+            height="360"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <!-- カテゴリバッジ -->
+        <div class="mt-3 flex gap-2 flex-wrap">
+          <span class:list={['text-xs font-medium px-3 py-1 rounded-full', categoryInfo.bgColor, categoryInfo.textColor, 'border', categoryInfo.borderColor]}>
+            {categoryInfo.icon} {categoryInfo.name}
+          </span>
+          {product.isPopular && (
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-blue-600 text-white">人気商品</span>
+          )}
+          {product.isNew && (
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-green-600 text-white">NEW</span>
+          )}
+        </div>
+      </div>
+
+      <!-- 右：概要 -->
+      <div class="flex flex-col gap-4">
+        <p class="text-blue-600 font-medium text-sm">{product.brand}</p>
+        <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 leading-tight">
+          {product.name}
+        </h1>
+
+        <StarRating rating={product.rating} reviewCount={product.reviewCount} size="lg" />
+
+        <!-- 価格 -->
+        <div class="bg-blue-50 rounded-xl p-4">
+          <div class="flex items-baseline gap-3 flex-wrap">
+            <span class="text-3xl font-extrabold text-blue-800">
+              ¥{product.price.toLocaleString()}
+            </span>
+            <span class="text-gray-600">/ {product.boxCount}枚入（1箱）</span>
+          </div>
+          <p class="text-sm text-gray-500 mt-1">
+            1枚あたり 約<strong class="text-gray-700">¥{pricePerLens}</strong>
+          </p>
+        </div>
+
+        <!-- CTAボタン -->
+        <div class="space-y-3">
+          <RakutenButton url={product.rakutenUrl} label="楽天市場で最安値を確認する" size="lg" fullWidth />
+          <p class="text-xs text-center text-gray-400">
+            ※ 楽天アフィリエイトリンク経由 / 価格は変動する場合があります
+          </p>
+        </div>
+
+        <!-- 説明文 -->
+        <p class="text-gray-700 leading-relaxed">{product.description}</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+      <!-- 特徴リスト -->
+      <section>
+        <h2 class="text-xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-100">
+          ✅ 主な特徴
+        </h2>
+        <ul class="space-y-3">
+          {product.features.map(feature => (
+            <li class="flex items-start gap-2 text-gray-700">
+              <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- こんな人におすすめ -->
+      <section>
+        <h2 class="text-xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-green-100">
+          👤 こんな人におすすめ
+        </h2>
+        <ul class="space-y-3">
+          {product.targetUsers.map(user => (
+            <li class="flex items-start gap-2 text-gray-700">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+              </svg>
+              <span>{user}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+
+    <!-- スペック表 -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-100">
+        📋 スペック詳細
+      </h2>
+      <div class="overflow-hidden rounded-xl border border-gray-200">
+        <table class="w-full text-sm">
+          <tbody>
+            {specRows.map((row, i) => (
+              <tr class:list={[i % 2 === 0 ? 'bg-white' : 'bg-gray-50']}>
+                <th
+                  scope="row"
+                  class="text-left px-4 py-3 text-gray-600 font-medium w-2/5 border-b border-gray-100 whitespace-nowrap"
+                >
+                  {row.label}
+                </th>
+                <td class:list={[
+                  'px-4 py-3 text-gray-900 border-b border-gray-100',
+                  row.value.startsWith('✓') ? 'text-green-700 font-medium' : '',
+                  row.value.startsWith('×') ? 'text-gray-400' : '',
+                ]}>
+                  {row.value}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 購入CTA（再掲） -->
+    <section class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-6 mb-10 text-center">
+      <h2 class="text-lg font-bold text-gray-900 mb-2">楽天市場でお得に購入する</h2>
+      <p class="text-sm text-gray-600 mb-4">
+        ポイント還元・ショップクーポンでさらにお得になることも。
+      </p>
+      <RakutenButton url={product.rakutenUrl} label="楽天市場で最安値を確認する" size="lg" />
+      <p class="text-xs text-gray-400 mt-3">
+        ※ コンタクトレンズは高度管理医療機器です。必ず眼科医の処方・指示に従ってご使用ください。
+      </p>
+    </section>
+
+    <!-- 関連商品 -->
+    {relatedProducts.length > 0 && (
+      <section>
+        <h2 class="text-xl font-bold text-gray-900 mb-2">同カテゴリの商品</h2>
+        <p class="text-gray-500 text-sm mb-5">
+          <a href={`${base}/compare/${product.category}/`} class="text-blue-600 hover:underline">
+            → {categoryInfo.name}を一覧で比較する
+          </a>
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {relatedProducts.map(p => (
+            <ProductCard product={p} />
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>

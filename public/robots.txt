@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # ★ YOUR_GITHUB_USERNAME をGitHubのユーザー名に変更してください ★
-Sitemap: https://yu0416ryfu-sys.github.io/contact-lens-affiliate/sitemap-index.xml
+Sitemap: https://yu0416ryfu-sys.github.io/contact-lens-guide/sitemap-index.xml

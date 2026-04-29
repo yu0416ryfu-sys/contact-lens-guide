@@ -50,7 +50,7 @@ export const products: Product[] = [
     boxCount: 30,
     rating: 4.7,
     reviewCount: 7432,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%87%E3%82%A4%E3%83%AA%E3%83%BC%E3%82%BA%E3%83%88%E3%83%BC%E3%82%BF%E3%83%AB%E3%83%AF%E3%83%B3/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%87%E3%82%A4%E3%83%AA%E3%83%BC%E3%82%BA%E3%83%88%E3%83%BC%E3%82%BF%E3%83%AB%E3%83%AF%E3%83%B3/',
     description: 'ウォーターグラジェント技術により、レンズ表面が最大99%水分で覆われる次世代ワンデー。異物感ほぼゼロの驚きの装用感を実現。',
     features: [
       'ウォーターグラジェント技術でレンズ表面が最大99%水分',
@@ -84,7 +84,7 @@ export const products: Product[] = [
     boxCount: 30,
     rating: 4.4,
     reviewCount: 6521,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%90%E3%82%A4%E3%82%AA%E3%83%88%E3%82%A5%E3%83%AB%E3%83%BC%E3%83%AF%E3%83%B3%E3%83%87%E3%83%BC/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%90%E3%82%A4%E3%82%AA%E3%83%88%E3%82%A5%E3%83%AB%E3%83%BC%E3%83%AF%E3%83%B3%E3%83%87%E3%83%BC/',
     description: '目の表面にある「ヒアルロン酸」と同素材で作られた生体模倣型ワンデーレンズ。含水率78%の高含水設計で16時間装用後も乾燥しにくい。',
     features: [
       'ヒアルロン酸と同素材の生体模倣型素材使用',
@@ -119,7 +119,7 @@ export const products: Product[] = [
     boxCount: 6,
     rating: 4.6,
     reviewCount: 15234,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%82%A2%E3%82%AD%E3%83%A5%E3%83%93%E3%83%A5%E3%83%BC%E3%82%AA%E3%82%A2%E3%82%B7%E3%82%B9+2%E9%80%B1%E9%96%93/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%82%A2%E3%82%AD%E3%83%A5%E3%83%93%E3%83%A5%E3%83%BC%E3%82%AA%E3%82%A2%E3%82%B7%E3%82%B9+2%E9%80%B1%E9%96%93/',
     description: '2週間交換レンズの最高峰。ハイドララクシー技術で涙の成分を取り込み、業界最高水準の酸素透過性（Dk/t=147）で1日中快適な視界を実現します。',
     features: [
       'ハイドララクシー技術でうるおいを長時間キープ',
@@ -156,7 +156,7 @@ export const products: Product[] = [
     boxCount: 6,
     rating: 4.2,
     reviewCount: 9876,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%A1%E3%83%80%E3%83%AA%E3%82%B9%E3%83%88II/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%A1%E3%83%80%E3%83%AA%E3%82%B9%E3%83%88II/',
     description: 'コストパフォーマンスに優れた定番2週間レンズ。豊富な度数展開と実績ある安心の品質で、コンタクト入門者から経験者まで幅広く支持されています。',
     features: [
       '手頃な価格でコストパフォーマンス抜群',
@@ -189,7 +189,7 @@ export const products: Product[] = [
     boxCount: 6,
     rating: 4.5,
     reviewCount: 7654,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%90%E3%82%A4%E3%82%AA%E3%83%95%E3%82%A3%E3%83%8B%E3%83%86%E3%82%A3/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%90%E3%82%A4%E3%82%AA%E3%83%95%E3%82%A3%E3%83%8B%E3%83%86%E3%82%A3/',
     description: 'Aquaformテクノロジーにより高酸素透過性と保湿を両立した上位2週間レンズ。連続装用7日間にも対応（医師の処方が必要）。',
     features: [
       'Aquaformテクノロジーで高酸素・高うるおいを両立',
@@ -225,7 +225,7 @@ export const products: Product[] = [
     boxCount: 10,
     rating: 4.3,
     reviewCount: 4523,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%95%E3%83%AC%E3%83%83%E3%82%B7%E3%83%A5%E3%82%B3%E3%83%B3%E3%82%AB%E3%83%A9%E3%82%B3%E3%83%B3/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%95%E3%83%AC%E3%83%83%E3%82%B7%E3%83%A5%E3%82%B3%E3%83%B3%E3%82%AB%E3%83%A9%E3%82%B3%E3%83%B3/',
     description: '自然なグラデーション発色で瞳をナチュラルに大きく魅せるカラーコンタクト。日本人の瞳に馴染みやすいカラー展開で、オフィスにも使えます。',
     features: [
       '自然なグラデーションで瞳に馴染む発色',
@@ -258,7 +258,7 @@ export const products: Product[] = [
     boxCount: 10,
     rating: 4.4,
     reviewCount: 6234,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%95%E3%83%AC%E3%83%AF%E3%83%B3%E3%83%87%E3%83%BCUV/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%95%E3%83%AC%E3%83%AF%E3%83%B3%E3%83%87%E3%83%BCUV/',
     description: '国産メーカー「シード」の高品質カラコン。ぷるんとした高含水素材に豊富なカラー展開。UVカット機能付きで目の健康も配慮した1日タイプ。',
     features: [
       '国産メーカー「シード」の安心品質',
@@ -294,7 +294,7 @@ export const products: Product[] = [
     boxCount: 6,
     rating: 4.5,
     reviewCount: 5432,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%82%A2%E3%82%AD%E3%83%A5%E3%83%93%E3%83%A5%E3%83%BC%E3%82%AA%E3%82%A2%E3%82%B7%E3%82%B9+%E4%B9%B1%E8%A6%96/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%82%A2%E3%82%AD%E3%83%A5%E3%83%93%E3%83%A5%E3%83%BC%E3%82%AA%E3%82%A2%E3%82%B7%E3%82%B9+%E4%B9%B1%E8%A6%96/',
     description: 'ASD（アクセラレーテッド安定化デザイン）でまばたきのたびに最適位置へ素早く復帰。高酸素透過性シリコーンハイドロゲル素材の乱視用レンズ最高峰。',
     features: [
       'ASD設計でまばたきのたびにレンズが安定した位置に戻る',
@@ -329,7 +329,7 @@ export const products: Product[] = [
     boxCount: 30,
     rating: 4.4,
     reviewCount: 4123,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%AF%E3%83%B3%E3%83%87%E3%83%BC%E3%82%A2%E3%82%AD%E3%83%A5%E3%83%93%E3%83%A5%E3%83%BC%E3%83%A2%E3%82%A4%E3%82%B9%E3%83%88+%E4%B9%B1%E8%A6%96/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%AF%E3%83%B3%E3%83%87%E3%83%BC%E3%82%A2%E3%82%AD%E3%83%A5%E3%83%93%E3%83%A5%E3%83%BC%E3%83%A2%E3%82%A4%E3%82%B9%E3%83%88+%E4%B9%B1%E8%A6%96/',
     description: 'ワンデーアキュビューモイストの乱視対応版。毎日新しいレンズで清潔に使える1日使い捨て乱視用。旅行・スポーツにも最適。',
     features: [
       'ワンデータイプでケア用品不要',
@@ -364,7 +364,7 @@ export const products: Product[] = [
     boxCount: 6,
     rating: 4.4,
     reviewCount: 2876,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%82%A2%E3%82%AD%E3%83%A5%E3%83%93%E3%83%A5%E3%83%BC%E3%82%AA%E3%82%A2%E3%82%B7%E3%82%B9+%E9%81%A0%E8%BF%91/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%82%A2%E3%82%AD%E3%83%A5%E3%83%93%E3%83%A5%E3%83%BC%E3%82%AA%E3%82%A2%E3%82%B7%E3%82%B9+%E9%81%A0%E8%BF%91/',
     description: '独自のPCTテクノロジーにより、遠・中・近どの距離もナチュラルにクリア。高酸素透過性シリコーンハイドロゲル素材の遠近両用2週間レンズ。',
     features: [
       'PCTテクノロジーで遠・中・近の全距離を自然にカバー',
@@ -399,7 +399,7 @@ export const products: Product[] = [
     boxCount: 30,
     rating: 4.2,
     reviewCount: 1654,
-    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/YOUR_AFFILIATE_ID/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%97%E3%83%AD%E3%82%AF%E3%83%AA%E3%82%A2+%E9%81%A0%E8%BF%91/',
+    rakutenUrl: 'https://hb.afl.rakuten.co.jp/hgc/53451e16.4970a80f.53451e17.e292153a/?pc=https://search.rakuten.co.jp/search/mall/%E3%83%97%E3%83%AD%E3%82%AF%E3%83%AA%E3%82%A2+%E9%81%A0%E8%BF%91/',
     description: 'FDA承認のドライアイ対応遠近両用ワンデーレンズ。PC（フォスファチルコリン）技術が涙を引き寄せ、ドライアイの遠近両用ユーザーをサポート。',
     features: [
       'PC技術でFDAドライアイ承認を取得',

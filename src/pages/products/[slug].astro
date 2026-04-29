@@ -34,7 +34,7 @@ const specRows = [
 ---
 
 <BaseLayout
-  title={`${product.name}の口コミ・スペック・最安値`}
+  title={`${product.name}の口コミ・スペック・価格情報`}
   description={`${product.name}（${product.brand}）の詳細情報。価格¥${product.price.toLocaleString()}/${product.boxCount}枚、評価${product.rating}/5（${product.reviewCount.toLocaleString()}件）。スペック・特徴・向いている人を徹底解説。楽天市場で購入できます。`}
   ogImage={product.image}
   product={product}
@@ -106,7 +106,7 @@ const specRows = [
 
         <!-- CTAボタン -->
         <div class="space-y-3">
-          <RakutenButton url={product.rakutenUrl} label="楽天市場で最安値を確認する" size="lg" fullWidth />
+          <RakutenButton url={product.rakutenUrl} label="楽天市場で価格を確認する" size="lg" fullWidth />
           <p class="text-xs text-center text-gray-400">
             ※ 楽天アフィリエイトリンク経由 / 価格は変動する場合があります
           </p>
@@ -189,9 +189,18 @@ const specRows = [
       <p class="text-sm text-gray-600 mb-4">
         ポイント還元・ショップクーポンでさらにお得になることも。
       </p>
-      <RakutenButton url={product.rakutenUrl} label="楽天市場で最安値を確認する" size="lg" />
+      <RakutenButton url={product.rakutenUrl} label="楽天市場で価格を確認する" size="lg" />
       <p class="text-xs text-gray-400 mt-3">
-        ※ コンタクトレンズは高度管理医療機器です。必ず眼科医の処方・指示に従ってご使用ください。
+        ※ 価格は変動する場合があります。楽天市場の販売ページにてご確認ください。
+      </p>
+    </section>
+
+    <!-- 免責事項 -->
+    <section class="mb-10 border border-yellow-200 bg-yellow-50 rounded-xl p-5">
+      <p class="text-sm font-bold text-yellow-800 mb-1">ご注意</p>
+      <p class="text-sm text-yellow-900 leading-relaxed">
+        コンタクトレンズは高度管理医療機器（クラスIII）です。ご使用前に眼科医にご相談ください。
+        使用方法・装用時間を必ず守り、異常を感じた場合はすぐに使用を中止し眼科医にご相談ください。
       </p>
     </section>
 
